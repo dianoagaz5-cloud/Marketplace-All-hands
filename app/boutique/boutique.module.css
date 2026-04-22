@@ -4,11 +4,55 @@
   flex-direction: column;
 }
 
+.main > * {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 .container {
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 var(--space-5);
   width: 100%;
+  box-sizing: border-box;
+}
+
+.mainContent {
+  width: 100%;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-5);
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.searchInput {
+  flex: 1;
+  min-width: 200px;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: 0.9375rem;
+  background: var(--color-bg-secondary);
+}
+
+.sortSelect {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: 0.9375rem;
+  background: var(--color-bg-secondary);
+  min-width: 160px;
+}
+
+.servicesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-5);
 }
 
 /* Page Header */
@@ -347,10 +391,148 @@
   color: var(--color-text-muted);
 }
 
+/* Grids for other pages */
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-5);
+}
+
+.ebooksGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--space-5);
+}
+
+.vendorsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-5);
+}
+
+/* Filter Group - shared */
+.filterGroup {
+  margin-bottom: var(--space-5);
+}
+
+.filterGroup h4 {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: var(--space-3);
+  color: var(--color-text-primary);
+}
+
+.categoryList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.categoryBtn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  font-size: 0.9375rem;
+  color: var(--color-text-secondary);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+  text-align: left;
+}
+
+.categoryBtn:hover {
+  background: var(--color-bg-primary);
+  color: var(--color-primary);
+}
+
+.categoryBtn.active {
+  background: var(--color-primary);
+  color: white;
+}
+
+.categoryCount {
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  background: var(--color-bg-primary);
+  border-radius: var(--radius-full);
+  color: var(--color-text-muted);
+}
+
+/* No Results */
+.noResults {
+  text-align: center;
+  padding: var(--space-9) 0;
+}
+
+.noResults p {
+  font-size: 1.125rem;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-4);
+}
+
+.noResults button {
+  padding: var(--space-3) var(--space-5);
+  background: var(--color-primary);
+  color: white;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.noResults button:hover {
+  background: var(--color-primary-light);
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
-  .productsGrid {
+  .productsGrid,
+  .ebooksGrid,
+  .vendorsGrid,
+  .servicesGrid {
     grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  
+  .sidebar {
+    display: none;
+  }
+  
+  .sidebar.sidebarOpen {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100vh;
+    z-index: 1000;
+    overflow-y: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .productsGrid,
+  .ebooksGrid,
+  .vendorsGrid,
+  .servicesGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .pageHeader h1 {
+    font-size: 1.75rem;
+  }
+  
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .sortSelect {
+    width: 100%;
   }
 }
 
